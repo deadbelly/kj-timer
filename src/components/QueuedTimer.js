@@ -11,5 +11,4 @@ const QueuedTimer = ({timer, removeTimer}) => {
   )
 }
 
-
 export default QueuedTimer

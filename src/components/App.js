@@ -9,7 +9,17 @@ class App extends React.Component {
     this.state = {
       formTitle: '',
       formTime: 0,
-      timers: []
+      timers: [],
+      activeTimer: null
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.timers.length && !this.state.activeTimer) {
+      this.setState({
+        activeTimer: this.state.timers[0],
+        timers: this.state.timers.splice(1)
+      })
     }
   }
 
