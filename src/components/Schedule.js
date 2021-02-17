@@ -1,22 +1,18 @@
 import React from 'react';
-import { useTimer } from 'react-timer-hook';
+import QueuedTimer from './QueuedTimer'
 
-const Schedule = (activeTimers) => {
-  const timers = activeTimers.map(timer => {
-    const {hours, minutes, seconds} = useTimer({ expiryTimestamp: timer.time, onExpire: () => console.warn('finished') })
-
-    return (
-      <div>
-        <p> hours </p>
-        <p> minutes </p>
-        <p> seconds </p>
-      </div>
-    )
-  })
+const Schedule = ({timers, removeTimer}) => {
+  const queue = timers.map(timer =>
+    <QueuedTimer
+      key={timer.id}
+      timer={timer}
+      removeTimer={removeTimer}
+    />
+  )
   return (
-    <>
-      timers
-    </>
+    <div className='schedule'>
+      {queue}
+    </div>
   )
 }
 

@@ -9,7 +9,7 @@ class App extends React.Component {
     this.state = {
       formTitle: '',
       formTime: 0,
-      activeTimers: []
+      timers: []
     }
   }
 
@@ -35,16 +35,21 @@ class App extends React.Component {
     this.setState({formTitle: '', formTime: 0})
   }
 
-  addTimer = (event) => {
+  addTimer = event => {
     event.preventDefault();
-    this.setState({activeTimers: [
-      ...this.state.activeTimers,
+    this.setState({timers: [
+      ...this.state.timers,
       {
-        id: date.now(),
+        id: Date.now(),
         title: this.state.formTitle,
         seconds: this.state.formTime
     }]});
     this.clearInputs();
+  }
+
+  removeTimer = id => {
+    const newList = this.state.timers.filter(timer => timer.id !== id)
+    this.setState({timers: newList})
   }
 
   render() {
@@ -59,7 +64,10 @@ class App extends React.Component {
             decrement={this.decrementTime}
             addTimer={this.addTimer}
           />
-          <Schedule activeTimers={this.state.activeTimers}/>
+          <Schedule
+            timers={this.state.timers}
+            removeTimer={this.removeTimer}
+          />
         </main>
       </>
     );
