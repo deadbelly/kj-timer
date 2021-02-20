@@ -67,6 +67,16 @@ class App extends React.Component {
     this.setState({activeTimer: null})
   }
 
+  handleOnDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const items = Array.from(this.state.timers)
+    const [reorderedItem] = items.splice(result.source.index, 1)
+    items.splice(result.destination.index, 0, reorderedItem)
+
+    this.setState({timers: items})
+  }
+
   render() {
     return (
       <>
@@ -81,6 +91,7 @@ class App extends React.Component {
         <Schedule
           timers={this.state.timers}
           removeTimer={this.removeTimer}
+          handleOnDragEnd={this.handleOnDragEnd}
         />
         {this.state.activeTimer &&
           <ActiveTimer
