@@ -15,6 +15,13 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('state')) {
+      const storedState = JSON.parse(localStorage.getItem('state'))
+      this.setState(storedState)
+    }
+  }
+
   componentDidUpdate() {
     if (this.state.timers.length && !this.state.activeTimer) {
       this.setState({
@@ -22,6 +29,7 @@ class App extends React.Component {
         timers: this.state.timers.splice(1)
       })
     }
+    localStorage.setItem('state', JSON.stringify(this.state))
   }
 
   updateTitle = (event) => {
