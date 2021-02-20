@@ -84,6 +84,7 @@ class App extends React.Component {
         <Schedule
           timers={this.state.timers}
           removeTimer={this.removeTimer}
+          addTimer={this.addTimer}
           handleOnDragEnd={this.handleOnDragEnd}
         />
         {this.state.activeTimer &&

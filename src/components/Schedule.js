@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import QueuedTimer from './QueuedTimer'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const Schedule = ({timers, removeTimer, handleOnDragEnd}) => {
+const Schedule = ({timers, removeTimer, addTimer, handleOnDragEnd}) => {
   const queue = timers.map((timer, index) => {
     return (
       <Draggable
@@ -11,12 +11,13 @@ const Schedule = ({timers, removeTimer, handleOnDragEnd}) => {
         index={index}
       >
         {(provided) => (
-          <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+          <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
             <QueuedTimer
               timer={timer}
+              copyTimer={addTimer}
               removeTimer={removeTimer}
             />
-          </li>
+          </div>
         )}
       </Draggable>
     )
