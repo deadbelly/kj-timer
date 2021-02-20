@@ -1,4 +1,5 @@
 import React from 'react';
+import timeFormater from '../timeFormater'
 
 class TimerCreator extends React.Component {
   constructor() {
@@ -44,7 +45,7 @@ class TimerCreator extends React.Component {
           value={this.state.title}
           onChange={this.updateTitle}
         />
-        <h2>{this.state.seconds}</h2>
+        <h2>{timeFormater.format(this.state.seconds)}</h2>
         <div className="time-control">
           <button onClick={this.decrement}>-</button>
           <button onClick={this.increment}>+</button>
