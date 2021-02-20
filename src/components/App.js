@@ -1,6 +1,7 @@
 import React from 'react';
 import TimerCreator from './TimerCreator';
 import Schedule from './Schedule';
+import ActiveTimer from './ActiveTimer';
 import '../App.css';
 
 class App extends React.Component {
@@ -62,23 +63,31 @@ class App extends React.Component {
     this.setState({timers: newList})
   }
 
+  clearTimer = () => {
+    this.setState({activeTimer: null})
+  }
+
   render() {
     return (
       <>
-        <main>
-          <TimerCreator
-            title={this.state.formTitle}
-            time={this.state.formTime}
-            updateTitle={this.updateTitle}
-            increment={this.incrementTime}
-            decrement={this.decrementTime}
-            addTimer={this.addTimer}
+        <TimerCreator
+          title={this.state.formTitle}
+          time={this.state.formTime}
+          updateTitle={this.updateTitle}
+          increment={this.incrementTime}
+          decrement={this.decrementTime}
+          addTimer={this.addTimer}
+        />
+        <Schedule
+          timers={this.state.timers}
+          removeTimer={this.removeTimer}
+        />
+        {this.state.activeTimer &&
+          <ActiveTimer
+            timer={this.state.activeTimer}
+            clearTimer={this.clearTimer}
           />
-          <Schedule
-            timers={this.state.timers}
-            removeTimer={this.removeTimer}
-          />
-        </main>
+        }
       </>
     );
   }
