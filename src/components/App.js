@@ -9,14 +9,17 @@ class App extends React.Component {
     super();
     this.state = {
       timers: [],
-      activeTimer: null
+      activeTimer: null,
+      autostart: false
     }
   }
 
   componentDidMount() {
     if (localStorage.getItem('state')) {
-      const storedState = JSON.parse(localStorage.getItem('state'))
-      this.setState(storedState)
+      this.setState({
+          ...JSON.parse(localStorage.getItem('state')),
+        autostart: false
+      })
     }
   }
 
@@ -58,6 +61,11 @@ class App extends React.Component {
     this.setState({timers: items})
   }
 
+  runAutostart = () => {
+    console.log('hi')
+    this.setState({autostart: true})
+  }
+
   render() {
     return (
       <>
@@ -73,6 +81,8 @@ class App extends React.Component {
           <ActiveTimer
             timer={this.state.activeTimer}
             clearTimer={this.clearTimer}
+            autostart={this.state.autostart}
+            runAutostart={this.runAutostart}
           />
         }
       </>

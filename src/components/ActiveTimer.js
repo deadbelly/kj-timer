@@ -13,7 +13,7 @@ class ActiveTimer extends React.Component {
   }
 
   render() {
-    const {timer, clearTimer} = this.props
+    const {timer, clearTimer, autostart, runAutostart} = this.props
 
     const timerMilli = timer.seconds * 1000
 
@@ -23,7 +23,10 @@ class ActiveTimer extends React.Component {
         <>
           <h1>{zeroPad(minutes)}:{zeroPad(seconds)}</h1>
           <div className='controls'>
-            <button onClick={start}>START</button>
+            <button onClick={() => {
+              start()
+              runAutostart()
+            }}>START</button>
             <button onClick={pause}>PAUSE</button>
           </div>
         </>
@@ -37,6 +40,7 @@ class ActiveTimer extends React.Component {
           date={Date.now() + timerMilli}
           renderer={renderer}
           onComplete={clearTimer}
+          autoStart={autostart}
         />
       </main>
     )
