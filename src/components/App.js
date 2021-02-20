@@ -43,12 +43,20 @@ class App extends React.Component {
   }
 
   removeTimer = id => {
-    const newList = this.state.timers.filter(timer => timer.id !== id)
-    this.setState({timers: newList})
+    this.setState({
+      timers: this.state.timers.filter(timer => timer.id !== id),
+      activeTimer: (this.state.activeTimer.id == id ? null : this.state.activeTimer)
+    })
   }
 
   clearTimer = () => {
-    this.setState({activeTimer: null})
+    this.setState({
+      timers: [
+        ...this.state.timers,
+        this.state.activeTimer
+      ],
+      activeTimer: null
+    })
   }
 
   handleOnDragEnd = (result) => {
@@ -62,7 +70,6 @@ class App extends React.Component {
   }
 
   runAutostart = () => {
-    console.log('hi')
     this.setState({autostart: true})
   }
 
@@ -83,6 +90,7 @@ class App extends React.Component {
             clearTimer={this.clearTimer}
             autostart={this.state.autostart}
             runAutostart={this.runAutostart}
+            removeTimer={this.removeTimer}
           />
         }
       </>

@@ -13,7 +13,7 @@ class ActiveTimer extends React.Component {
   }
 
   render() {
-    const {timer, clearTimer, autostart, runAutostart} = this.props
+    const {timer, clearTimer, autostart, runAutostart, removeTimer} = this.props
 
     const timerMilli = timer.seconds * 1000
 
@@ -28,6 +28,8 @@ class ActiveTimer extends React.Component {
               runAutostart()
             }}>START</button>
             <button onClick={pause}>PAUSE</button>
+            <button onClick={() => removeTimer(timer.id)}>REMOVE</button>
+            <button>FINISH</button>
           </div>
         </>
       )
