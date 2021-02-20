@@ -33,12 +33,14 @@ class App extends React.Component {
     localStorage.setItem('state', JSON.stringify(this.state))
   }
 
-  addTimer = timer => {
+  addTimer = formState => {
+    const { title, seconds } = formState
     this.setState({timers: [
       ...this.state.timers,
       {
         id: Date.now(),
-        ...timer
+        title,
+        seconds
     }]});
   }
 

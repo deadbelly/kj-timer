@@ -7,6 +7,7 @@ class TimerCreator extends React.Component {
     this.state = {
       title: '',
       seconds: 0,
+      interval: null
     }
   }
 
@@ -24,6 +25,19 @@ class TimerCreator extends React.Component {
     if (this.state.seconds - 1 > -1) {
       this.setState({seconds: this.state.seconds - 1})
     }
+  }
+
+  startHold = (callback, event) => {
+    this.setState({interval: 'awaiting'})
+    setTimeout(() => {
+      if (this.state.interval === 'awaiting') {
+        this.setState({interval: setInterval(callback, 50 , event)})
+      }
+    }, 1000)
+  }
+
+  cancelHold = () => {
+    this.setState({interval: clearInterval(this.state.interval)})
   }
 
   clearInputs = () => {
@@ -47,8 +61,26 @@ class TimerCreator extends React.Component {
         />
         <h2>{timeFormater.format(this.state.seconds)}</h2>
         <div className="time-control">
-          <button onClick={this.decrement}>-</button>
-          <button onClick={this.increment}>+</button>
+          <button
+            onClick={event => {
+              event.preventDefault()
+            }}
+            onMouseDown={event => {
+              this.decrement(event)
+              this.startHold(this.decrement, event)
+            }}
+            onMouseUp={this.cancelHold}
+          >-</button>
+          <button
+            onClick={event => {
+              event.preventDefault()
+            }}
+            onMouseDown={event => {
+              this.increment(event)
+              this.startHold(this.increment, event)
+            }}
+            onMouseUp={this.cancelHold}
+          >+</button>
         </div>
         <button onClick={this.handleSubmit}>ADD TIMER</button>
       </form>
