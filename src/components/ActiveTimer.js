@@ -29,7 +29,7 @@ class ActiveTimer extends React.Component {
             }}>START</button>
             <button onClick={pause}>PAUSE</button>
             <button onClick={() => removeTimer(timer.id)}>REMOVE</button>
-            <button>FINISH</button>
+            <button onClick={clearTimer}>FINISH</button>
           </div>
         </>
       )
