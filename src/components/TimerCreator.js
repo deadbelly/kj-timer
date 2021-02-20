@@ -15,25 +15,29 @@ class TimerCreator extends React.Component {
     this.setState({title: event.target.value})
   }
 
-  increment = (event) => {
+  increment = (unit, event) => {
     event.preventDefault()
-    this.setState({seconds: this.state.seconds + 1})
+    this.setState({seconds: this.state.seconds + unit})
   }
 
-  decrement = (event) => {
+  decrement = (unit, event) => {
     event.preventDefault()
     if (this.state.seconds - 1 > -1) {
-      this.setState({seconds: this.state.seconds - 1})
+      this.setState({seconds: this.state.seconds - unit})
     }
   }
 
-  startHold = (callback, event) => {
-    this.setState({interval: 'awaiting'})
+  speedUp = (callback, unit, event) => {
     setTimeout(() => {
       if (this.state.interval === 'awaiting') {
-        this.setState({interval: setInterval(callback, 50 , event)})
+        this.setState({interval: setInterval(callback, 75, unit, event)})
       }
     }, 1000)
+  }
+
+  startHold = (callback, unit, event) => {
+    this.setState({interval: 'awaiting'})
+    this.speedUp(callback, unit, event)
   }
 
   cancelHold = () => {
@@ -61,26 +65,50 @@ class TimerCreator extends React.Component {
         />
         <h2>{timeFormater.format(this.state.seconds)}</h2>
         <div className="time-control">
-          <button
-            onClick={event => {
-              event.preventDefault()
-            }}
-            onMouseDown={event => {
-              this.decrement(event)
-              this.startHold(this.decrement, event)
-            }}
-            onMouseUp={this.cancelHold}
-          >-</button>
-          <button
-            onClick={event => {
-              event.preventDefault()
-            }}
-            onMouseDown={event => {
-              this.increment(event)
-              this.startHold(this.increment, event)
-            }}
-            onMouseUp={this.cancelHold}
-          >+</button>
+          <div className="time-control--minutes">
+            <button
+              onClick={event => {
+                event.preventDefault()
+              }}
+              onMouseDown={event => {
+                this.decrement(60, event)
+                this.startHold(this.decrement, 60, event)
+              }}
+              onMouseUp={this.cancelHold}
+            >-</button>
+            <button
+              onClick={event => {
+                event.preventDefault()
+              }}
+              onMouseDown={event => {
+                this.increment(60, event)
+                this.startHold(this.increment, 60, event)
+              }}
+              onMouseUp={this.cancelHold}
+            >+</button>
+          </div>
+          <div className="time-control--seconds">
+            <button
+              onClick={event => {
+                event.preventDefault()
+              }}
+              onMouseDown={event => {
+                this.decrement(1, event)
+                this.startHold(this.decrement, 1, event)
+              }}
+              onMouseUp={this.cancelHold}
+            >-</button>
+            <button
+              onClick={event => {
+                event.preventDefault()
+              }}
+              onMouseDown={event => {
+                this.increment(1, event)
+                this.startHold(this.increment, 1, event)
+              }}
+              onMouseUp={this.cancelHold}
+            >+</button>
+          </div>
         </div>
         <button onClick={this.handleSubmit}>ADD TIMER</button>
       </form>
