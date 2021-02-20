@@ -44,14 +44,9 @@ class TimerCreator extends React.Component {
     this.setState({interval: clearInterval(this.state.interval)})
   }
 
-  clearInputs = () => {
-    this.setState({title: '', seconds: 0})
-  }
-
   handleSubmit = event => {
     event.preventDefault()
     this.props.addTimer(this.state)
-    this.clearInputs()
   }
 
   render() {
@@ -61,6 +56,7 @@ class TimerCreator extends React.Component {
           name='title'
           type='text'
           value={this.state.title}
+          placeholder='Timer Title'
           onChange={this.updateTitle}
         />
         <h2>{timeFormater.format(this.state.seconds)}</h2>
