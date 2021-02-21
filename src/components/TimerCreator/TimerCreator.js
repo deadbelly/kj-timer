@@ -1,5 +1,5 @@
 import React from 'react';
-import timeFormater from '../timeFormater'
+import timeFormater from '../../timeFormater'
 
 class TimerCreator extends React.Component {
   constructor() {

@@ -36,7 +36,7 @@ class ActiveTimer extends React.Component {
     }
 
     return (
-      <main>
+      <>
         <h2>{timer.title}</h2>
         <Countdown
           date={Date.now() + timerMilli}
@@ -44,7 +44,7 @@ class ActiveTimer extends React.Component {
           onComplete={clearTimer}
           autoStart={autostart}
         />
-      </main>
+      </>
     )
   }
 }

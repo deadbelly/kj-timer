@@ -1,5 +1,5 @@
 import React from 'react'
-import timeFormater from '../timeFormater'
+import timeFormater from '../../timeFormater'
 
 const QueuedTimer = ({timer, copyTimer, removeTimer}) => {
   const {title, seconds, id} = timer

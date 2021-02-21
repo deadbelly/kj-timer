@@ -1,8 +1,8 @@
 import React from 'react';
-import TimerCreator from './TimerCreator';
-import Schedule from './Schedule';
-import ActiveTimer from './ActiveTimer';
-import '../App.css';
+import TimerCreator from '../TimerCreator/TimerCreator';
+import Schedule from '../Schedule/Schedule';
+import ActiveTimer from '../ActiveTimer/ActiveTimer';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
