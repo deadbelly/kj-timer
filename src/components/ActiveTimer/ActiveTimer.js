@@ -1,5 +1,6 @@
 import React from 'react'
 import Countdown, { zeroPad } from 'react-countdown'
+import './ActiveTimer.css'
 
 class ActiveTimer extends React.Component {
   constructor() {

@@ -77,26 +77,28 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div class='app'>
         <TimerCreator
           addTimer={this.addTimer}
         />
+        <main>
+          {this.state.activeTimer &&
+            <ActiveTimer
+              timer={this.state.activeTimer}
+              clearTimer={this.clearTimer}
+              autostart={this.state.autostart}
+              runAutostart={this.runAutostart}
+              removeTimer={this.removeTimer}
+            />
+          }
+        </main>
         <Schedule
           timers={this.state.timers}
           removeTimer={this.removeTimer}
           addTimer={this.addTimer}
           handleOnDragEnd={this.handleOnDragEnd}
         />
-        {this.state.activeTimer &&
-          <ActiveTimer
-            timer={this.state.activeTimer}
-            clearTimer={this.clearTimer}
-            autostart={this.state.autostart}
-            runAutostart={this.runAutostart}
-            removeTimer={this.removeTimer}
-          />
-        }
-      </>
+      </div>
     );
   }
 }

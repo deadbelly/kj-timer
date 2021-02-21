@@ -1,0 +1,31 @@
+h1 {
+  font-size: 6em;
+  line-height: 1em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+.controls {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2%;
+  grid-row-gap: 10%;
+  color: #abdefe;
+  width: 50%;
+
+}
+
+button {
+  background-color: #0270c1;
+  border: none;
+  border-radius: 12px;
+  color: #abdefe;
+}
+
+button:hover {
+  cursor: pointer;
+
+}
