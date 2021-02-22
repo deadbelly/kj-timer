@@ -2,7 +2,7 @@ import React from 'react';
 import TimerCreator from '../TimerCreator/TimerCreator';
 import Schedule from '../Schedule/Schedule';
 import ActiveTimer from '../ActiveTimer/ActiveTimer';
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
   constructor() {

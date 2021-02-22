@@ -20,12 +20,5 @@ h2 {
 
 button {
   background-color: var(--dark-color);
-  border: none;
-  border-radius: 12px;
   color: var(--light-color);
-}
-
-button:hover {
-  cursor: pointer;
-
 }

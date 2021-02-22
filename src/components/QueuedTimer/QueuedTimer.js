@@ -4,7 +4,7 @@ import timeFormater from '../../timeFormater'
 const QueuedTimer = ({timer, copyTimer, removeTimer}) => {
   const {title, seconds, id, color} = timer
   return (
-    <div className={`queued-timer ${color}`}>
+    <div className={`queued-timer ${color} widget`}>
       <h4>{title}</h4>
       <p>{timeFormater.format(seconds)}</p>
       <button onClick={() => copyTimer(timer)}>COPY</button>

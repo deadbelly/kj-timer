@@ -34,3 +34,20 @@ main {
   align-items: center;
   color: var(--dark-color);
 }
+
+.widget {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  & button {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+  }
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  &:hover {
+    cursor: pointer;
+  }
+}

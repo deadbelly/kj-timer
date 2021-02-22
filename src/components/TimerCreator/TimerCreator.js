@@ -1,7 +1,7 @@
 import React from 'react';
 import timeFormater from '../../timeFormater'
 import Draggable from 'react-draggable'
-import './TimerCreator.css'
+import './TimerCreator.scss'
 
 class TimerCreator extends React.Component {
   constructor() {
@@ -55,7 +55,7 @@ class TimerCreator extends React.Component {
   render() {
     return (
       <Draggable>
-        <form className={this.state.color}>
+        <form className={`${this.state.color} widget`}>
           <input
             name='title'
             type='text'
