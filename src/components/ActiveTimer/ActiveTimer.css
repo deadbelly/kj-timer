@@ -13,16 +13,16 @@ h2 {
   grid-template-columns: 1fr 1fr;
   column-gap: 2%;
   grid-row-gap: 10%;
-  color: #abdefe;
+  color: var(--light-color);
   width: 50%;
 
 }
 
 button {
-  background-color: #0270c1;
+  background-color: var(--dark-color);
   border: none;
   border-radius: 12px;
-  color: #abdefe;
+  color: var(--light-color);
 }
 
 button:hover {

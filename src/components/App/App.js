@@ -9,7 +9,12 @@ class App extends React.Component {
     super();
     this.state = {
       timers: [],
-      activeTimer: null,
+      activeTimer: {
+        title: 'Title',
+        seconds: 0,
+        id: 0,
+        color: 'blue'
+      },
       autostart: false
     }
   }
@@ -24,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.state.timers.length && !this.state.activeTimer) {
+    if (this.state.timers.length && !this.state.activeTimer.id) {
       this.setState({
         activeTimer: this.state.timers[0],
         timers: this.state.timers.splice(1)
@@ -34,13 +39,14 @@ class App extends React.Component {
   }
 
   addTimer = formState => {
-    const { title, seconds } = formState
+    const { title, seconds, color } = formState
     this.setState({timers: [
       ...this.state.timers,
       {
         id: Date.now(),
         title,
-        seconds
+        seconds,
+        color
     }]});
   }
 
@@ -57,7 +63,10 @@ class App extends React.Component {
         ...this.state.timers,
         this.state.activeTimer
       ],
-      activeTimer: null
+      activeTimer: {
+        id: 0,
+        color: 'blue'
+      }
     })
   }
 
@@ -76,8 +85,10 @@ class App extends React.Component {
   }
 
   render() {
+    const { color } = this.state.activeTimer
+
     return (
-      <div class='app'>
+      <div className={`app ${color}`}>
         <TimerCreator
           addTimer={this.addTimer}
         />

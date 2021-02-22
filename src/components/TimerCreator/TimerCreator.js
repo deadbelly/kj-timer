@@ -8,6 +8,7 @@ class TimerCreator extends React.Component {
     this.state = {
       title: '',
       seconds: 0,
+      color: 'blue',
       interval: null
     }
   }

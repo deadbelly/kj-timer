@@ -19,7 +19,7 @@
 }
 
 .app {
-  background-color: #abdefe;
+  background-color: var(--light-color);
   display: grid;
   grid-template-columns: 4fr 1fr;
   height: 100vh;
@@ -32,7 +32,7 @@ main {
   padding: 10%;
   justify-content: center;
   align-items: center;
-  color: #0270c1;
+  color: var(--dark-color);
 }
 
 form {
