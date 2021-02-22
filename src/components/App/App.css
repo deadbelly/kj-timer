@@ -1,8 +1,29 @@
+.blue {
+  --light-color: #abdefe;
+  --dark-color: #0270c1;
+}
+
+.purple {
+  --light-color: #f4abfe;
+  --dark-color: #b202c1;
+}
+
+.orange {
+  --light-color: #fecbab;
+  --dark-color: #c15302;
+}
+
+.green {
+  --light-color: #b5feab;
+  --dark-color: #10c102;
+}
+
 .app {
   background-color: #abdefe;
   display: grid;
   grid-template-columns: 4fr 1fr;
   height: 100vh;
+  z-index: 1;
 }
 
 main {
@@ -15,5 +36,6 @@ main {
 }
 
 form {
-  display: none;
+  position: absolute;
+  z-index: 10;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import timeFormater from '../../timeFormater'
+import Draggable from 'react-draggable'
 
 class TimerCreator extends React.Component {
   constructor() {
@@ -51,63 +52,65 @@ class TimerCreator extends React.Component {
 
   render() {
     return (
-      <form>
-        <input
-          name='title'
-          type='text'
-          value={this.state.title}
-          placeholder='Timer Title'
-          onChange={this.updateTitle}
-        />
-        <h2>{timeFormater.format(this.state.seconds)}</h2>
-        <div className="time-control">
-          <div className="time-control--minutes">
-            <button
-              onClick={event => {
-                event.preventDefault()
-              }}
-              onMouseDown={event => {
-                this.decrement(60, event)
-                this.startHold(this.decrement, 60, event)
-              }}
-              onMouseUp={this.cancelHold}
-            >-</button>
-            <button
-              onClick={event => {
-                event.preventDefault()
-              }}
-              onMouseDown={event => {
-                this.increment(60, event)
-                this.startHold(this.increment, 60, event)
-              }}
-              onMouseUp={this.cancelHold}
-            >+</button>
+      <Draggable>
+        <form className='blue'>
+          <input
+            name='title'
+            type='text'
+            value={this.state.title}
+            placeholder='Timer Title'
+            onChange={this.updateTitle}
+          />
+          <h2>{timeFormater.format(this.state.seconds)}</h2>
+          <div className="time-control">
+            <div className="time-control--minutes">
+              <button
+                onClick={event => {
+                  event.preventDefault()
+                }}
+                onMouseDown={event => {
+                  this.decrement(60, event)
+                  this.startHold(this.decrement, 60, event)
+                }}
+                onMouseUp={this.cancelHold}
+              >-</button>
+              <button
+                onClick={event => {
+                  event.preventDefault()
+                }}
+                onMouseDown={event => {
+                  this.increment(60, event)
+                  this.startHold(this.increment, 60, event)
+                }}
+                onMouseUp={this.cancelHold}
+              >+</button>
+            </div>
+            <div className="time-control--seconds">
+              <button
+                onClick={event => {
+                  event.preventDefault()
+                }}
+                onMouseDown={event => {
+                  this.decrement(1, event)
+                  this.startHold(this.decrement, 1, event)
+                }}
+                onMouseUp={this.cancelHold}
+              >-</button>
+              <button
+                onClick={event => {
+                  event.preventDefault()
+                }}
+                onMouseDown={event => {
+                  this.increment(1, event)
+                  this.startHold(this.increment, 1, event)
+                }}
+                onMouseUp={this.cancelHold}
+              >+</button>
+            </div>
           </div>
-          <div className="time-control--seconds">
-            <button
-              onClick={event => {
-                event.preventDefault()
-              }}
-              onMouseDown={event => {
-                this.decrement(1, event)
-                this.startHold(this.decrement, 1, event)
-              }}
-              onMouseUp={this.cancelHold}
-            >-</button>
-            <button
-              onClick={event => {
-                event.preventDefault()
-              }}
-              onMouseDown={event => {
-                this.increment(1, event)
-                this.startHold(this.increment, 1, event)
-              }}
-              onMouseUp={this.cancelHold}
-            >+</button>
-          </div>
-        </div>
-        <button onClick={this.handleSubmit}>ADD TIMER</button>
-      </form>
+          <button onClick={this.handleSubmit}>ADD TIMER</button>
+        </form>
+      </Draggable>
     );
   }
 }
