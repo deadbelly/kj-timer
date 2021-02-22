@@ -34,8 +34,3 @@ main {
   align-items: center;
   color: var(--dark-color);
 }
-
-form {
-  position: absolute;
-  z-index: 10;
-}

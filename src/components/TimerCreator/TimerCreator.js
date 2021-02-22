@@ -1,6 +1,7 @@
 import React from 'react';
 import timeFormater from '../../timeFormater'
 import Draggable from 'react-draggable'
+import './TimerCreator.css'
 
 class TimerCreator extends React.Component {
   constructor() {
@@ -13,8 +14,8 @@ class TimerCreator extends React.Component {
     }
   }
 
-  updateTitle = (event) => {
-    this.setState({title: event.target.value})
+  updateForm = (event) => {
+    this.setState({[event.target.name]: event.target.value})
   }
 
   increment = (unit, event) => {
@@ -54,14 +55,24 @@ class TimerCreator extends React.Component {
   render() {
     return (
       <Draggable>
-        <form className='blue'>
+        <form className={this.state.color}>
           <input
             name='title'
             type='text'
             value={this.state.title}
             placeholder='Timer Title'
-            onChange={this.updateTitle}
+            onChange={this.updateForm}
           />
+          <select
+            name='color'
+            value={this.state.color}
+            onChange={this.updateForm}
+          >
+            <option value='blue'>Blue</option>
+            <option value='purple'>Purple</option>
+            <option value='orange'>Orange</option>
+            <option value='green'>Green</option>
+          </select>
           <h2>{timeFormater.format(this.state.seconds)}</h2>
           <div className="time-control">
             <div className="time-control--minutes">

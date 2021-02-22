@@ -1,0 +1,5 @@
+form {
+  background-color: var(--dark-color);
+  position: absolute;
+  z-index: 10;
+}

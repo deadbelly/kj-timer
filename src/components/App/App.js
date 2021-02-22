@@ -71,13 +71,13 @@ class App extends React.Component {
   }
 
   handleOnDragEnd = (result) => {
-    if (!result.destination) return;
+    if (result.destination) {
+      const items = Array.from(this.state.timers)
+      const [reorderedItem] = items.splice(result.source.index, 1)
+      items.splice(result.destination.index, 0, reorderedItem)
 
-    const items = Array.from(this.state.timers)
-    const [reorderedItem] = items.splice(result.source.index, 1)
-    items.splice(result.destination.index, 0, reorderedItem)
-
-    this.setState({timers: items})
+      this.setState({timers: items})
+    }
   }
 
   runAutostart = () => {
