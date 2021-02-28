@@ -1,5 +1,6 @@
 import React from 'react'
 import timeFormater from '../../timeFormater'
+import './QueuedTimer.scss'
 
 const QueuedTimer = ({timer, copyTimer, removeTimer}) => {
   const {title, seconds, id, color} = timer
@@ -7,8 +8,10 @@ const QueuedTimer = ({timer, copyTimer, removeTimer}) => {
     <div className={`queued-timer ${color} widget`}>
       <h4>{title}</h4>
       <p>{timeFormater.format(seconds)}</p>
-      <button onClick={() => copyTimer(timer)}>COPY</button>
-      <button onClick={() => removeTimer(id)}>REMOVE</button>
+      <div className='queued-controls'>
+        <button onClick={() => copyTimer(timer)}>COPY</button>
+        <button onClick={() => removeTimer(id)}>REMOVE</button>
+      </div>
     </div>
   )
 }

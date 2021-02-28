@@ -37,6 +37,7 @@ main {
 
 .widget {
   background-color: var(--dark-color);
+  border-radius: 5px;
   color: var(--light-color);
   & button {
     background-color: var(--light-color);

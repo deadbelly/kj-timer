@@ -72,11 +72,11 @@ class App extends React.Component {
 
   handleOnDragEnd = (result) => {
     if (result.destination) {
-      const items = Array.from(this.state.timers)
-      const [reorderedItem] = items.splice(result.source.index, 1)
-      items.splice(result.destination.index, 0, reorderedItem)
+      const reorderedTimers = Array.from(this.state.timers)
+      const [reorderedItem] = reorderedTimers.splice(result.source.index, 1)
+      reorderedTimers.splice(result.destination.index, 0, reorderedItem)
 
-      this.setState({timers: items})
+      this.setState({timers: reorderedTimers})
     }
   }
 
