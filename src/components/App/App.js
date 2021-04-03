@@ -95,8 +95,8 @@ class App extends React.Component {
     }
   }
 
-  runAutostart = () => {
-    this.setState({autostart: true})
+  runAutostart = (bool) => {
+    this.setState({autostart: bool})
   }
 
   render() {

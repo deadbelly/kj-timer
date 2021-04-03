@@ -19,16 +19,20 @@ class ActiveTimer extends React.Component {
     const timerMilli = timer.seconds * 1000
 
     const renderer = ({ minutes, seconds, api }) => {
-      const { start, pause } = api
+      const { start, pause, isStopped } = api
       return (
         <>
+          {autostart && isStopped() && start()}
           <h1>{zeroPad(minutes)}:{zeroPad(seconds)}</h1>
           <div className='controls'>
             <button onClick={() => {
+              runAutostart(true)
               start()
-              runAutostart()
             }}>START</button>
-            <button onClick={pause}>PAUSE</button>
+            <button onClick={() => {
+              runAutostart(false)
+              pause()
+            }}>PAUSE</button>
             <button onClick={() => removeTimer(timer.id)}>REMOVE</button>
             <button onClick={clearTimer}>FINISH</button>
           </div>
@@ -39,11 +43,15 @@ class ActiveTimer extends React.Component {
     return (
       <>
         <h2>{timer.title}</h2>
-        {autostart && start()}
         <Countdown
           date={Date.now() + timerMilli}
           renderer={renderer}
           onComplete={clearTimer}
+          onMount={() => {
+            if(autostart){
+              this.ref.start()
+            }
+          }}
           autoStart={autostart}
         />
       </>
