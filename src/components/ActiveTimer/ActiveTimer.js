@@ -23,6 +23,7 @@ class ActiveTimer extends React.Component {
       return (
         <>
           <h1>{zeroPad(minutes)}:{zeroPad(seconds)}</h1>
+          {autostart && start()}
           <div className='controls'>
             <button onClick={() => {
               start()
