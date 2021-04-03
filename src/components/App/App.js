@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state = {
       timers: [],
       activeTimer: {
-        title: 'Title',
+        title: 'Use the Timer Creator to Get Started',
         seconds: 0,
         id: 0,
         color: 'blue'
@@ -35,6 +35,17 @@ class App extends React.Component {
         timers: this.state.timers.splice(1)
       })
     }
+
+    if (!this.state.timers.length && !this.state.activeTimer) {
+      this.setState({
+        activeTimer: {
+          title: 'Use the Timer Creator to Get Started',
+          seconds: 0,
+          id: 0,
+          color: 'blue'
+        }
+      })
+    }
     localStorage.setItem('state', JSON.stringify(this.state))
   }
 
@@ -51,10 +62,12 @@ class App extends React.Component {
   }
 
   removeTimer = id => {
-    this.setState({
-      timers: this.state.timers.filter(timer => timer.id !== id),
-      activeTimer: (this.state.activeTimer.id == id ? null : this.state.activeTimer)
-    })
+    if (this.state.activeTimer.id !== 0) {
+      this.setState({
+        timers: this.state.timers.filter(timer => timer.id !== id),
+        activeTimer: (this.state.activeTimer.id == id ? null : this.state.activeTimer)
+      })
+    }
   }
 
   clearTimer = () => {
