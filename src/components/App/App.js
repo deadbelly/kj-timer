@@ -2,6 +2,7 @@ import React from 'react';
 import TimerCreator from '../TimerCreator/TimerCreator';
 import Schedule from '../Schedule/Schedule';
 import ActiveTimer from '../ActiveTimer/ActiveTimer';
+import Alarm from '../Alarm/Alarm'
 import './App.scss';
 
 class App extends React.Component {
@@ -15,7 +16,7 @@ class App extends React.Component {
         id: 0,
         color: 'blue'
       },
-      autostart: false
+      autostart: false,
     }
   }
 
@@ -71,6 +72,7 @@ class App extends React.Component {
   }
 
   clearTimer = () => {
+    document.getElementsByClassName("audio")[0].play()
     this.setState({
       timers: [
         ...this.state.timers,
@@ -122,6 +124,7 @@ class App extends React.Component {
           addTimer={this.addTimer}
           handleOnDragEnd={this.handleOnDragEnd}
         />
+        <Alarm />
       </div>
     );
   }
